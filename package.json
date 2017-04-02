@@ -4,14 +4,15 @@
   "description": "Proyecto de API RESTful con Node.js - Express - MongoDB",
   "main": "index.js",
   "scripts": {
-  	"start": "nodemon index.js",
+    "start": "nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "josemanuelCRV",
   "license": "MIT",
   "dependencies": {
     "body-parser": "^1.17.1",
-    "express": "^4.15.2"
+    "express": "^4.15.2",
+    "mongoose": "^4.9.2"
   },
   "devDependencies": {
     "nodemon": "^1.11.0"
