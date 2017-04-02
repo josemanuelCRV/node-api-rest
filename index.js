@@ -68,12 +68,16 @@ app.post('/api/product', (req, res) =>{
 	
 })
 
-// PUT - 
+// PUT - http://localhost:3001/api/product/58e134cc6fd73d278c1cdd61
 app.put('/api/product/:productId', (req, res) => {
 	
+	let productId = req.params.productId
+	let update = req.body
 
-
-	
+	Product.findByIdAndUpdate(productId, update, (err, productUpdated) => {
+		if(err) res.status(500).send({message: `Error al actualizar producto: $(err)`})	
+		res.status(200).send({product: productUpdated})	
+	})
 })
 
 // DELETE by ID: http://localhost:3001/api/product/58e133056878ab3ba8e80bf8
