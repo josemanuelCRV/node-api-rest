@@ -21,19 +21,19 @@ app.use(bodyParser.json())
 
 // API REST
 
-// http://localhost:3001/api/product
-app.get('/api/product', (req, res) =>{
+// GET ALL: http://localhost:3001/api/product/
+app.get('/api/product', (req, res) => {
 
-	Product.find({}, (err, products)=>{
+	Product.find({}, (err, products)=> {
 		if(err) return res.status(500).send({message: `Error al recuperar la lista de productos: ${err}`})
 		if(!products) return res.status(404).send({message: `No existen productos`})
 
-			res.send(200, {products})
+			res.status(200).send({products})
 	})
 	
 })
 
-// http://localhost:3001/api/product/58e134cc6fd73d278c1cdd61
+// GET by_ID: http://localhost:3001/api/product/58e134cc6fd73d278c1cdd61
 app.get('/api/product/:productId', (req, res) =>{
 		
 	let productId = req.params.productId
@@ -46,7 +46,8 @@ app.get('/api/product/:productId', (req, res) =>{
 	})
 })
 
-//
+// POST - http://localhost:3001/api/product
+// x-wwww-form urlencoded: Body {name-price-picture-category-description}
 app.post('/api/product', (req, res) =>{
 	console.log('POST /api/product')
 	var reqBody = req.body
@@ -67,14 +68,26 @@ app.post('/api/product', (req, res) =>{
 	
 })
 
-//
-app.put('/api/product/:productId', (req, res) =>{
+// PUT - 
+app.put('/api/product/:productId', (req, res) => {
+	
+
+
 	
 })
 
-//
-app.delete('/api/product/:productId', (req, res) =>{
-	
+// DELETE by ID: http://localhost:3001/api/product/58e133056878ab3ba8e80bf8
+app.delete('/api/product/:productId', (req, res) => {
+	let productId = req.params.productId
+
+	Product.findById(productId, (err, product) => {
+		if(err) res.status(500).send({message: `Error al borrar producto: $(err)`})
+
+		product.remove(err => {
+			if(err) res.status(500).send({message: `Error al borrar producto: $(err)`})
+			res.status(200).send({message: `El producto ha sido eliminado`})
+		})		
+	})
 })
 
 
