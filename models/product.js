@@ -3,6 +3,8 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
+// Schema mongoose model for product
+
 const ProductSchema = Schema({
 	name:String,
 	price: {type: Number, default: 0},

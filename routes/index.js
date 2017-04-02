@@ -4,6 +4,7 @@ const express = require('express')
 const productCtrl = require('../controllers/product')
 const api = express.Router()
 
+// API RESTful methods.
 
 api.get('/product', productCtrl.getProducts)
 api.get('/product/:productId', productCtrl.getProduct)

@@ -1,5 +1,7 @@
 'use strict'
 
+// Express configuration
+// Use: Express - bodyParser - API routes  
 const express = require('express')
 const bodyParser = require('body-parser')
 const app = express()

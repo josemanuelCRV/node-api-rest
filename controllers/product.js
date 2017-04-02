@@ -2,6 +2,7 @@
 
 const Product = require('../models/product')
 
+// Logic of API methods
 
 function getProducts (req, res){
 	Product.find({}, (err, products)=> {
