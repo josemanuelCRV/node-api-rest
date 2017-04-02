@@ -9,7 +9,7 @@ const Product = require('./models/product')
 const app = express()
 const port = process.env.PORT || 3001
 
-// midlewares
+// middlewares
 app.use(bodyParser.urlencoded({ extended: false}))
 app.use(bodyParser.json())
 
@@ -23,12 +23,27 @@ app.use(bodyParser.json())
 
 // http://localhost:3001/api/product
 app.get('/api/product', (req, res) =>{
-	res.send(200, {product: []})
+
+	Product.find({}, (err, products)=>{
+		if(err) return res.status(500).send({message: `Error al recuperar la lista de productos: ${err}`})
+		if(!products) return res.status(404).send({message: `No existen productos`})
+
+			res.send(200, {products})
+	})
+	
 })
 
-//
+// http://localhost:3001/api/product/58e134cc6fd73d278c1cdd61
 app.get('/api/product/:productId', (req, res) =>{
 		
+	let productId = req.params.productId
+
+	Product.findById(productId, (err, product) =>{
+		if(err) return res.status(500).send({message: `Error al realizar la perición: ${err}`})
+		if(!product) return res.status(404).send({message: `El producto no existe`})
+
+		res.status(200).send({product: product })
+	})
 })
 
 //
