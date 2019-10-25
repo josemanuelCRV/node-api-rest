@@ -14,7 +14,8 @@
     "body-parser": "^1.17.1",
     "crypto": "0.0.3",
     "express": "^4.15.2",
-    "mongoose": "^4.9.2"
+    "_comment": "mongoose ^4.9.2",
+    "mongoose": "^5.7.5"
   },
   "devDependencies": {
     "nodemon": "^1.11.0"
